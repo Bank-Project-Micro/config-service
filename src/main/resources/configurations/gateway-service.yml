@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enable: true
+
+      routes:
+        - id: customer
+          uri: lb://CUSTOMER-SERVICE
+          predicates:
+            - Path=/customers/**
+        - id: account
+          uri: lb://ACCOUNT-SERVICE
+          predicates:
+            - Path=/accounts/**
